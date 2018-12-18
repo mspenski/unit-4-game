@@ -1,4 +1,9 @@
-var targetNumber = 53;
+var targetNumber = Math.floor(Math.random() * 100);
+var initialCounter = 0;
+var wins = 0;
+var losses = 0;
+var currentScore = 0;
+
 
 $("#number-to-guess").text(targetNumber);
 
@@ -7,7 +12,18 @@ var counter = 0;
 // Now for the hard part. Creating multiple crystals each with their own unique number value.
 
 // We begin by expanding our array to include four options.
-var numberOptions = [10, 5, 3, 7];
+// var numberOptions = [10, 5, 3, 7];
+var numberOptions = [];
+
+while(numberOptions.length < 4){
+  var j = Math.floor(Math.random()*10) + 1;
+  if(numberOptions.indexOf(j) === -1) numberOptions.push(j);
+}
+// Tried this and it generated random number but did nt check for repeat numbers
+// for (var x = 0; x < 4; x++) {
+//   numberOptions.push(Math.floor(Math.random() * 10));
+// }
+
 
 // Next we create a for loop to create crystals for every numberOption.
 for (var i = 0; i < numberOptions.length; i++) {
@@ -49,8 +65,27 @@ $(".crystal-image").on("click", function() {
 
   if (counter === targetNumber) {
     alert("You win!");
-  }else if (counter >= targetNumber) {
+    wins++;
+    counter = initialCounter;
+    winsText.textContent = "Wins: " + wins;
+    targetNumber = Math.floor(Math.random() * 100);
+    $("#number-to-guess").text(targetNumber);
+  }else if (counter > targetNumber) {
     alert("You lose!!");
+    losses++;
+    counter = initialCounter;
+    lossesText.textContent = "Losses: " + losses;
+    currentScoreText.textContent = "Current " + "Score: " + currentScore;
+    targetNumber = Math.floor(Math.random() * 100);
+    $("#number-to-guess").text(targetNumber);
   }
 
 });
+
+var winsText = document.getElementById("wins-text");
+var lossesText = document.getElementById("losses-text");
+var currentScoreText = document.getElementById("currentscore-text");
+
+winsText.textContent = "Wins: " + wins;
+lossesText.textContent = "Losses: " + losses;
+currentScoreText.textContent = "Current " + "Score: " + currentScore;
