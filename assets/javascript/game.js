@@ -61,24 +61,30 @@ $(".crystal-image").on("click", function() {
   counter += crystalValue;
 
   // All of the same game win-lose logic applies. So the rest remains unchanged.
-  alert("New score: " + counter);
-
+  // alert("New score: " + counter);
   if (counter === targetNumber) {
     alert("You win!");
     wins++;
-    counter = initialCounter;
     winsText.textContent = "Wins: " + wins;
     targetNumber = Math.floor(Math.random() * 100);
     $("#number-to-guess").text(targetNumber);
+    counter = 0;
+    $("#currentScoreSpan-text").text(counter);
+    
   }else if (counter > targetNumber) {
     alert("You lose!!");
     losses++;
-    counter = initialCounter;
     lossesText.textContent = "Losses: " + losses;
-    currentScoreText.textContent = "Current " + "Score: " + currentScore;
+    
     targetNumber = Math.floor(Math.random() * 100);
+    counter = 0;
+    $("#currentScoreSpan-text").text(counter);
+    
     $("#number-to-guess").text(targetNumber);
+    
   }
+  console.log(counter)
+  $("#currentScoreSpan-text").text(counter);
 
 });
 
@@ -88,4 +94,4 @@ var currentScoreText = document.getElementById("currentscore-text");
 
 winsText.textContent = "Wins: " + wins;
 lossesText.textContent = "Losses: " + losses;
-currentScoreText.textContent = "Current " + "Score: " + currentScore;
+
