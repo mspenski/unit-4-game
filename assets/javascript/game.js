@@ -63,7 +63,7 @@ $(".crystal-image").on("click", function() {
   // All of the same game win-lose logic applies. So the rest remains unchanged.
   // alert("New score: " + counter);
   if (counter === targetNumber) {
-    alert("You win!");
+    alert("You're a wizard, Harry!");
     wins++;
     winsText.textContent = "Wins: " + wins;
     targetNumber = Math.floor(Math.random() * 100);
@@ -72,7 +72,7 @@ $(".crystal-image").on("click", function() {
     
     
   }else if (counter > targetNumber) {
-    alert("You lose!!");
+    alert("You lose, Muggle!");
     losses++;
     lossesText.textContent = "Losses: " + losses;
     targetNumber = Math.floor(Math.random() * 100);
